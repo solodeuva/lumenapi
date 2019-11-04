@@ -18,3 +18,18 @@ $router->get('/', function () use ($router) {
 /*$router->get('/key', function() {
     return Str::random(32);
 });*/
+
+
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router) {
+   // Matches "/api/register
+   
+   	$router->group(['middleware' => ['auth']], function () use ($router) {
+	   // Matches "/api/register
+	   $router->get('list', 'ExampleController@usuarios');
+	});
+
+   // Matches "/api/login
+    $router->post('login', 'AuthController@login');
+
+});
