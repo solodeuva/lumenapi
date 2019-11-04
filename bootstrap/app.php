@@ -65,6 +65,11 @@ $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
+//Swagger
+$app->configure('swagger-lume');
+//Constans
+$app->configure('constants');
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -79,8 +84,10 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+//JWT
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+//Swagger
+$app->register(\SwaggerLume\ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\Info(title="My First Lumen API", version="0.1")
+ */
+
+/**
+ * @OA\Server(url=API_HOST)
+ */
 
 class AuthController extends Controller
 {
@@ -45,11 +52,37 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
+    * @OA\Post(
+    *     path="/api/login",
+    *     tags={"Login"},
+    *     summary="Login in aplication",
+    *     @OA\Parameter(
+    *         name="email",
+    *         in="query",
+    *         description="The user email for login",
+    *         required=true,
+    *         @OA\Schema(
+    *             type="string"
+    *         )
+    *     ),
+    *     @OA\Parameter(
+    *         name="password",
+    *         in="query",
+    *         required=true,
+    *         @OA\Schema(
+    *             type="string",
+    *         )
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="User Logged In + bearer token"
+    *     ),
+    *     @OA\Response(
+    *         response=400,
+    *         description="Invalid username/password supplied"
+    *     ),
+    * )
+    */
     public function login(Request $request)
     {
           //validate incoming request 
